@@ -1,11 +1,12 @@
 name: Build Obfuscate BPB Panel
 
 on:
+  workflow_dispatch:
   # push:
   #   branches:
   #     - main
-  schedule:
-    - cron: "0 6 * * *"
+  # schedule:
+    # - cron: "0 6 * * *"
 
 permissions:
   contents: write
@@ -30,8 +31,11 @@ jobs:
 
       - name: Download and extract latest BPB worker
         run: |
+          # wget https://github.com/bia-pain-bache/BPB-Worker-Panel/releases/download/v3.2.5/worker.zip
+          # unzip -o worker.zip
+          
           wget https://github.com/bia-pain-bache/BPB-Worker-Panel/releases/latest/download/unobfuscated-worker.zip
-          unzip -o unobfuscated-worker.zip
+          unzip -o unobfuscated-worker.zip          
           mv _worker.js origin.js
 
       - name: Obfuscate BPB worker js
